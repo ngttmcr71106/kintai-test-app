@@ -415,17 +415,7 @@ cd kintai-test-app
 
 ---
 
-### ステップ2：`src/` フォルダを作成する
-
-> ⚠️ このフォルダが存在しないと Dev Container 起動時にエラーになります。
-
-```bash
-mkdir -p src
-```
-
----
-
-### ステップ3：VSCode で Dev Container を開く
+### ステップ2：VSCode で Dev Container を開く
 
 1. VSCode で `unlock-kintai/` フォルダを開く
 2. 右下のポップアップ **「Reopen in Container」** をクリック
@@ -440,7 +430,7 @@ root@xxxxxxxxxx:/var/www/html#   ← この表示になればOK
 
 ---
 
-### ステップ4：CI4 をインストールする
+### ステップ3：CI4 をインストールする
 
 Dev Container 内のターミナル（`Ctrl+@`）で実行します。
 
@@ -452,7 +442,7 @@ composer create-project codeigniter4/appstarter .
 
 ---
 
-### ステップ5：`.env` を作成する
+### ステップ4：`.env` を作成する
 
 ```bash
 cp env .env
@@ -479,7 +469,7 @@ database.default.port = 3306
 
 ---
 
-### ステップ6：暗号化キーを生成する
+### ステップ5：暗号化キーを生成する
 
 ```bash
 php spark key:generate
@@ -491,7 +481,7 @@ php spark key:generate
 
 ---
 
-### ステップ7：動作確認
+### ステップ6：動作確認
 
 ブラウザで以下の URL にアクセスしてください。
 
@@ -502,7 +492,7 @@ php spark key:generate
 
 ---
 
-## 6. よく使うコマンド
+## 7. よく使うコマンド
 
 ### コンテナ操作（Macのターミナル または Dev Container内のターミナル）
 
