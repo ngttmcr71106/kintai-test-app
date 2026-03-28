@@ -1,0 +1,21 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "## What is CodeIgniter?",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css",
+    "dev": "tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}
