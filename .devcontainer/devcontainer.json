@@ -1,0 +1,45 @@
+{
+  "name": "unlock-kintai",
+
+  // ルートのdocker-compose.ymlを直接参照
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "php",
+  "workspaceFolder": "/var/www/html",
+
+  // Docker-in-Docker（Docker Desktopなしで動かすための設定）
+  // moby: false → Debian trixie（php:8.4-apache）との互換性問題を回避
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2",
+      "moby": "false"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // PHP
+        "bmewburn.vscode-intelephense-client",
+        // Tailwind CSS
+        "bradlc.vscode-tailwindcss",
+        // Docker
+        "ms-azuretools.vscode-docker",
+        // Git
+        "eamodio.gitlens",
+        // EditorConfig（改行コード統一）
+        "editorconfig.editorconfig",
+        // dotenv
+        "mikestead.dotenv"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[php]": {
+          "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        }
+      }
+    }
+  },
+
+  "remoteUser": "root"
+}

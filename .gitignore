@@ -1,0 +1,22 @@
+# 環境設定（各自で .env.example からコピーして作成）
+src/.env
+
+# 再生成できるもの
+src/vendor/
+src/node_modules/
+
+# CI4の一時ファイル
+src/writable/cache/*
+src/writable/logs/*
+src/writable/session/*
+src/writable/uploads/*
+
+# ただし空ディレクトリは残す
+!src/writable/cache/.gitkeep
+!src/writable/logs/.gitkeep
+!src/writable/session/.gitkeep
+!src/writable/uploads/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db

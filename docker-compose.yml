@@ -1,0 +1,64 @@
+services:
+  # -----------------------------
+  # PHP + Apache
+  # -----------------------------
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: kintai_php
+    volumes:
+      - ./src:/var/www/html:cached
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      CI_ENVIRONMENT: development
+
+  # -----------------------------
+  # MySQL
+  # -----------------------------
+  db:
+    image: mysql:9.0
+    container_name: kintai_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: unlock_kintai_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # -----------------------------
+  # phpMyAdmin
+  # Apple Silicon（M1/M2/M3/M4）対応のためplatformを指定
+  # -----------------------------
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    container_name: kintai_phpmyadmin
+    ports:
+      - "8888:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: user
+      PMA_PASSWORD: password
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  # 名前付きボリュームでDBデータを永続化
+  # docker compose down だけではデータは消えない
+  # docker compose down -v をしない限り安全
+  mysql_data:
