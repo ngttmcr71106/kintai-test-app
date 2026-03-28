@@ -4,7 +4,7 @@
   // ルートのdocker-compose.ymlを直接参照
   "dockerComposeFile": "../docker-compose.yml",
   "service": "php",
-  "workspaceFolder": "/var/www/html",
+  "workspaceFolder": "/workspace",
 
   // Docker-in-Docker（Docker Desktopなしで動かすための設定）
   // moby: false → Debian trixie（php:8.4-apache）との互換性問題を回避

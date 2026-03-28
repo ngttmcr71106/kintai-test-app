@@ -9,6 +9,7 @@ services:
     container_name: kintai_php
     volumes:
       - ./src:/var/www/html:cached
+      - .:/workspace:cached
     ports:
       - "8080:80"
     depends_on:

@@ -380,23 +380,13 @@ wsl --set-default Ubuntu-22.04
 ### ステップ1：リポジトリをクローンする
 
 ```bash
-git clone https://github.com/xxxx/unlock-kintai.git
-cd unlock-kintai
+git clone https://github.com/ngttmcr71106/kintai-test-app
+cd kintai-test-app
 ```
 
 ---
 
-### ステップ2：`src/` フォルダを作成する
-
-> ⚠️ このフォルダが存在しないと Dev Container 起動時にエラーになります。
-
-```bash
-mkdir -p src
-```
-
----
-
-### ステップ3：VSCode で Dev Container を開く
+### ステップ2：VSCode で Dev Container を開く
 
 1. VSCode で `unlock-kintai/` フォルダを開く
 2. 右下のポップアップ **「Reopen in Container」** をクリック
@@ -411,15 +401,18 @@ root@xxxxxxxxxx:/var/www/html#   ← この表示になればOK
 
 ---
 
-### ステップ4：CI4 をインストールする
+### ステップ4：composer installの実行
 
 Dev Container 内のターミナル（`Ctrl+@`）で実行します。
 
+srcフォルダに移動します。
 ```bash
-composer create-project codeigniter4/appstarter .
+cd src
 ```
 
-> ℹ️ 末尾の `.`（ドット）を忘れずに。現在のディレクトリにインストールされます。
+```bash
+composer install
+```
 
 ---
 
