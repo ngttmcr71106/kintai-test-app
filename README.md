@@ -430,15 +430,15 @@ root@xxxxxxxxxx:/var/www/html#   ← この表示になればOK
 
 ---
 
-### ステップ3：CI4 をインストールする
+### ステップ3：srcディレクトリに移動し、CI4 をインストールする
 
 Dev Container 内のターミナル（`Ctrl+@`）で実行します。
 
 ```bash
-composer create-project codeigniter4/appstarter .
-```
+cd src
 
-> ℹ️ 末尾の `.`（ドット）を忘れずに。現在のディレクトリにインストールされます。
+composer install
+```
 
 ---
 
