@@ -331,7 +331,27 @@ docker compose version
 
 ---
 
-### ステップ2：WSL2 と Ubuntu 22.04 をインストールする
+### ステップ2：Git をインストールする
+
+以下の URL からインストーラーをダウンロードしてインストールしてください。
+インストール時の設定はすべて**デフォルトのままでOK**です。
+
+```
+https://git-scm.com/download/win
+```
+
+インストール後、PowerShell を**一度閉じて開き直して**から確認します。
+
+```powershell
+git --version
+# → git version 2.x.x と表示されればOK
+```
+
+---
+
+### ステップ3：WSL2 と Ubuntu 22.04 をインストールする
+
+PowerShell（管理者）で実行します。
 
 ```powershell
 wsl --install --distribution Ubuntu-22.04
@@ -341,16 +361,25 @@ wsl --install --distribution Ubuntu-22.04
 
 ---
 
-### ステップ3：Ubuntu の初期設定をする
+### ステップ4：Ubuntu の初期設定をする
 
-再起動後、スタートメニューから「Ubuntu 22.04」を起動します。
+再起動後、以下のいずれかの方法で Ubuntu を起動します。
+
+- スタートメニューで「Ubuntu 22.04」を検索して起動
+- PowerShell で `wsl -d Ubuntu-22.04` を実行
+
 ユーザー名とパスワードの設定を求められるので入力してください。
 
 > ⚠️ パスワードは入力しても画面に表示されません。正常な動作です。
 
+> ℹ️ スタートメニューに「Ubuntu 22.04」が表示されない場合は PowerShell で以下を実行してください。
+> ```powershell
+> wsl -d Ubuntu-22.04
+> ```
+
 ---
 
-### ステップ4：WSL2 のデフォルト設定をする
+### ステップ5：WSL2 のデフォルト設定をする
 
 PowerShell（管理者）で実行します。
 
@@ -361,10 +390,10 @@ wsl --set-default Ubuntu-22.04
 
 ---
 
-### ステップ5：VSCode と拡張機能をインストールする
+### ステップ6：VSCode と拡張機能をインストールする
 
 1. https://code.visualstudio.com/ から VSCode をインストール
-   （インストール時「PATH に追加」のチェックを必ず入れる）
+   （インストール時「**PATH に追加**」のチェックを必ず入れる）
 2. VSCode を起動して以下の拡張機能をインストール：
    - `ms-vscode-remote.remote-containers`（Dev Containers）
    - `ms-vscode-remote.remote-wsl`（WSL）
@@ -386,7 +415,17 @@ cd kintai-test-app
 
 ---
 
-### ステップ2：VSCode で Dev Container を開く
+### ステップ2：`src/` フォルダを作成する
+
+> ⚠️ このフォルダが存在しないと Dev Container 起動時にエラーになります。
+
+```bash
+mkdir -p src
+```
+
+---
+
+### ステップ3：VSCode で Dev Container を開く
 
 1. VSCode で `unlock-kintai/` フォルダを開く
 2. 右下のポップアップ **「Reopen in Container」** をクリック
@@ -401,18 +440,15 @@ root@xxxxxxxxxx:/var/www/html#   ← この表示になればOK
 
 ---
 
-### ステップ4：composer installの実行
+### ステップ4：CI4 をインストールする
 
 Dev Container 内のターミナル（`Ctrl+@`）で実行します。
 
-srcフォルダに移動します。
 ```bash
-cd src
+composer create-project codeigniter4/appstarter .
 ```
 
-```bash
-composer install
-```
+> ℹ️ 末尾の `.`（ドット）を忘れずに。現在のディレクトリにインストールされます。
 
 ---
 
@@ -468,9 +504,28 @@ php spark key:generate
 
 ## 6. よく使うコマンド
 
-すべて **Dev Container 内のターミナル**（`/var/www/html`）で実行してください。
+### コンテナ操作（Macのターミナル または Dev Container内のターミナル）
 
-### CI4
+```bash
+# 起動中のコンテナ一覧を確認
+docker compose ps
+
+# コンテナを起動する
+docker compose up -d
+
+# コンテナを停止する（DBデータは保持される）
+docker compose down
+
+# コンテナのログをリアルタイムで確認（Ctrl+C で終了）
+docker compose logs -f
+
+# PHPコンテナのログだけ確認
+docker compose logs -f php
+```
+
+---
+
+### CI4（Dev Container 内のターミナルで実行）
 
 ```bash
 php spark migrate            # マイグレーション実行
@@ -481,7 +536,7 @@ php spark routes             # ルート一覧表示
 php spark key:generate       # 暗号化キー生成
 ```
 
-### TailwindCSS
+### TailwindCSS（Dev Container 内のターミナルで実行）
 
 ```bash
 npm install       # パッケージインストール（初回のみ）
@@ -616,4 +671,3 @@ limactl start kintai-dev
   }
 }
 ```
-# kintai-test-app
