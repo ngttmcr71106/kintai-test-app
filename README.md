@@ -417,7 +417,7 @@ cd kintai-test-app
 
 ### ステップ2：VSCode で Dev Container を開く
 
-1. VSCode で `unlock-kintai/` フォルダを開く
+1. VSCode で `kintai-test-app/` フォルダを開く
 2. 右下のポップアップ **「Reopen in Container」** をクリック
    （または `Cmd+Shift+P` / `Ctrl+Shift+P` → `Dev Containers: Reopen in Container`）
 3. **初回はビルドに 10〜20 分かかります**（Docker イメージのダウンロードとビルド）
