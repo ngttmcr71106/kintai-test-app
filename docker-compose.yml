@@ -19,7 +19,7 @@ services:
       CI_ENVIRONMENT: development
 
   # -----------------------------
-  # MySQL
+  # mysql
   # -----------------------------
   db:
     image: mysql:9.0
@@ -45,11 +45,12 @@ services:
   # Apple Silicon（M1/M2/M3/M4）対応のためplatformを指定
   # -----------------------------
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    platform: linux/amd64
+    # 別の配布元（公式ショートネーム）を指定してキャッシュを回避
+    image: phpmyadmin:latest
+    # platform をあえて削除（Docker Desktopが自動で arm64 を選ぶようにする）
     container_name: kintai_phpmyadmin
     ports:
-      - "8888:80"
+      - "8888:80"  # 好きなポートでOK
     environment:
       PMA_HOST: db
       PMA_USER: user

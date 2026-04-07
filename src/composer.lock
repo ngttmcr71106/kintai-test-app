@@ -48,7 +48,7 @@
                 "ext-libxml": "If you use TestResponse",
                 "ext-memcache": "If you use Cache class MemcachedHandler with Memcache",
                 "ext-memcached": "If you use Cache class MemcachedHandler with Memcached",
-                "ext-mysqli": "If you use MySQL",
+                "ext-mysql": "If you use MySQL",
                 "ext-oci8": "If you use Oracle Database",
                 "ext-pcntl": "If you use Signals",
                 "ext-pgsql": "If you use PostgreSQL",

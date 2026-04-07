@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 # PHP拡張
 # -----------------------------
 RUN docker-php-ext-install \
+    mysqli \
     pdo_mysql \
     mbstring \
     zip \

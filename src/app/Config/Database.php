@@ -30,7 +30,7 @@ class Database extends Config
         'username'     => '',
         'password'     => '',
         'database'     => '',
-        'DBDriver'     => 'MySQLi',
+        'DBDriver'     => 'mysql',
         'DBPrefix'     => '',
         'pConnect'     => false,
         'DBDebug'      => true,
